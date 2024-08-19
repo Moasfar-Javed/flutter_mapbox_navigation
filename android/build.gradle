@@ -16,7 +16,7 @@ buildscript {
                 username = "mapbox"
                 password = project.hasProperty('MAPBOX_DOWNLOADS_TOKEN') ? project.property('MAPBOX_DOWNLOADS_TOKEN') : System.getenv('MAPBOX_DOWNLOADS_TOKEN')
                 if (password == null || password == "") {
-                    throw new GradleException("MAPBOX_DOWNLOADS_TOKEN isn't set. Set it to the project properties or to the enviroment variables.")
+                    //throw new GradleException("MAPBOX_DOWNLOADS_TOKEN isn't set. Set it to the project properties or to the environment variables.")
                 }
             }
         }
@@ -25,7 +25,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$android_gradle_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "com.mapbox.gradle.plugins:access-token:0.4.0"
+//        classpath "com.mapbox.gradle.plugins:access-token:0.4.0"
     }
 }
 
@@ -35,7 +35,7 @@ rootProject.allprojects {
         mavenCentral()
         maven { url 'https://plugins.gradle.org/m2' }
         maven {
-            url 'https://api.mapbox.com/downloads/v2/releases/maven'
+            url 'https://api.mapbox.com/downloads/v2/snapshots/maven'
             authentication {
                 basic(BasicAuthentication)
             }
@@ -43,7 +43,7 @@ rootProject.allprojects {
                 username = "mapbox"
                 password = project.hasProperty('MAPBOX_DOWNLOADS_TOKEN') ? project.property('MAPBOX_DOWNLOADS_TOKEN') : System.getenv('MAPBOX_DOWNLOADS_TOKEN')
                 if (password == null || password == "") {
-                    throw new GradleException("MAPBOX_DOWNLOADS_TOKEN isn't set. Set it to the project properties or to the enviroment variables.")
+                    throw new GradleException("MAPBOX_DOWNLOADS_TOKEN isn't set. Set it to the project properties or to the environment variables.")
                 }
             }
         }
@@ -80,16 +80,19 @@ android {
         jvmTarget = '1.8'
     }
 
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
     }
 }
 
 dependencies {
-    // Mapbox Navigation SDK
-    implementation "com.mapbox.navigation:copilot:2.16.0"
-    implementation "com.mapbox.navigation:ui-app:2.16.0"
-    implementation "com.mapbox.navigation:ui-dropin:2.16.0"
+    // Mapbox Navigation SDK version 3
+    implementation "com.mapbox.navigation:core:3.3.0"
+    implementation "com.mapbox.navigation:ui-core:3.3.0"
+    implementation "com.mapbox.navigation:ui-maps:3.3.0"
+    implementation "com.mapbox.navigation:ui-voice:3.3.0"
+    implementation "com.mapbox.navigation:ui-utils:3.3.0"
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.jakewharton.timber:timber:4.7.1'
     implementation 'com.google.code.gson:gson:2.8.9'
