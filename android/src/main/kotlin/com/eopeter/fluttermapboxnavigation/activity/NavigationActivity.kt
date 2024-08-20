@@ -91,6 +91,7 @@ class NavigationActivity : AppCompatActivity() {
         binding.navigationView.registerMapObserver(onMapClick)
         accessToken =
             PluginUtilities.getResourceFromContext(this.applicationContext, "mapbox_access_token")
+        Log.d("NavigationActivity", "Access Token: $accessToken")
 
         val navigationOptions = NavigationOptions.Builder(this.applicationContext)
             .accessToken(accessToken)
