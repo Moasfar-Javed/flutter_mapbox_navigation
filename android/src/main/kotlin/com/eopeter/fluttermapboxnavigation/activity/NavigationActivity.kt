@@ -1,5 +1,6 @@
 package com.eopeter.fluttermapboxnavigation.activity
 
+import android.util.Log
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
